@@ -739,13 +739,47 @@ start:
 	sw $10, 0($9)
 	addi $9, $9, 4 
 	sw $10, 0($9)
+
+leu:
+	lui $9, 0xffff
+	lw $10, 0($9)
+    beq $10, $0, nada # nao leu
+    lw $11, 4($9)
+    beq $11, 98, letraB
+    beq $11, 114, letraR
+    beq $11, 97, letraA
+    beq $11, 117, letraU
+    beq $11, 108, letraL
+    beq $11, 105, letraI
+    beq $11, 111, letraO
+	
+errou:
+	addi $16, $16, 1
+	beq $16, 1, macaco1
+	beq $16, 2, macaco2
+	beq $16, 3, macaco3
+	beq $16, 4, macaco4
+	beq $16, 5, macaco5
+	beq $16, 6, macaco6
+	beq $16, 7, macaco7
+	beq $16, 8, macaco8
+	j leu
+	
+acertouMizeravi:
+	addi $17, $17, 1
+	beq $17, 7, gameOver
+nada:
+	j leu
+	
+gameOver:
+	addi $2, $0, 10
+    syscall
 	
 macaco1:
 	lui $9, 0x1001
-	
 	addi $9, $9, 5680 
- 
 	addi $10, $0, 0x97dede
+	
 	sw $10, 0($9)
 	addi $9, $9, 4 
  
@@ -1008,6 +1042,8 @@ macaco1:
  
 	sw $10, 0($9)
 	
+	j leu
+	
 macaco2:
 	lui $9, 0x1001
 	
@@ -1054,7 +1090,9 @@ macaco2:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j leu
+	
 macaco3:
 	lui $9, 0x1001
 	
@@ -1158,7 +1196,9 @@ macaco3:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j leu
+	
 macaco4:
 	lui $9, 0x1001
 	
@@ -1319,6 +1359,8 @@ macaco4:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j leu
 
 macaco5:
 	lui $9, 0x1001
@@ -1540,6 +1582,8 @@ macaco5:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j leu
 
 macaco6:
 	lui $9, 0x1001
@@ -1761,6 +1805,8 @@ macaco6:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j leu
 
 macaco7:
 	lui $9, 0x1001
@@ -1994,6 +2040,8 @@ macaco7:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j leu
 
 macaco8:
 	lui $9, 0x1001
@@ -2176,10 +2224,11 @@ macaco8:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j gameOver
 
 letraA:
 	lui $9, 0x1001
-	
 	addi $9, $9, 11040 
  
 	addi $10, $0, 0x97dede
@@ -2805,6 +2854,8 @@ letraA:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j acertouMizeravi
 
 letraB:
 	lui $9, 0x1001
@@ -3434,7 +3485,9 @@ letraB:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j acertouMizeravi
+	
 letraI:
 	lui $9, 0x1001
 	
@@ -4067,7 +4120,9 @@ letraI:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j acertouMizeravi
+	
 letraL:
 	lui $9, 0x1001
 	
@@ -4704,7 +4759,9 @@ letraL:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j acertouMizeravi
+	
 letraO:
 	lui $9, 0x1001
 	
@@ -5333,7 +5390,9 @@ letraO:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j acertouMizeravi
+	
 letraR:
 	lui $9, 0x1001
 	
@@ -5986,7 +6045,9 @@ letraR:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
-
+	
+	j acertouMizeravi
+	
 letraU:
 	lui $9, 0x1001
 	addi $9, $9, 11040 
@@ -6622,3 +6683,5 @@ letraU:
 	addi $9, $9, 4 
  
 	sw $10, 0($9)
+	
+	j acertouMizeravi
